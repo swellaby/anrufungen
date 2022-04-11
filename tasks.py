@@ -2,8 +2,7 @@ from invoke import task
 import platform
 import os
 from shutil import rmtree
-# Insert module name on the below line
-from  import __version__
+from anrufungen import __version__
 
 
 def black(c, check):

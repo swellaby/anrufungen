@@ -1,6 +1,6 @@
 [run]
 branch = True
-source =
+source = anrufungen
 omit = **/__init__.py
 
 [xml]

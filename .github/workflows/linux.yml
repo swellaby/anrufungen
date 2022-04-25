@@ -25,3 +25,25 @@ jobs:
 
       - name: Run tests
         run: inv t
+
+  release:
+    needs:
+      - build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: pip3 install -r dev-requirements.txt
+
+      - name: Run Release
+        run: |
+          git config --global user.email "bots@swellaby.com"
+          git config --global user.name "Semantic Release Bot"
+          semantic-release publish
+        env:
+          REPOSITORY_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+    
